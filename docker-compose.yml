@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  teledockapi:
+    image: ${DOCKER_REGISTRY-}teledockapi
+    build:
+      context: .
+      dockerfile: Teledock/Dockerfile
+    ports:
+      - 12345:8080
+  
+  postgres-teledock:
+    image: postgres
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: Pass1234
+      POSTGRES_DB: TeledockDB
+      POSTGRES_USER: postgres
+
